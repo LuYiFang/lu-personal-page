@@ -1,0 +1,113 @@
+﻿<html>
+<head>
+<title>What is Linked List?</title>
+<style>
+h{
+font-size:18px;
+font-family:微軟正黑體;
+}
+
+p{
+font-size:18px;
+text-indent : 2em;
+font-family:微軟正黑體;
+line-height:30px;
+}
+
+.t th.red{
+font-size:16px;
+color:red;
+font-family:微軟正黑體;
+}
+
+.t th{
+font-size:16px;
+font-family:微軟正黑體;
+}
+
+.t td{
+font-size:16px;
+font-family:微軟正黑體;
+}
+
+r{
+font-size:24px;
+color:blue;
+font-family:微軟正黑體;
+}
+</style>
+</head>
+<body>
+<p align=center>
+<img src="introtop.png">
+</p>
+<br><br>
+
+<ol type="I" start="1">
+<r><li>簡介</li></r>
+<br>
+<p>當我們在儲存一筆同型資料時，通常都是使用較簡單的「陣列(Array)」來進行儲存，但是我們在宣告陣列時，都需要明確指定其大小，也因為如此，如果資料數 ＜ 陣列大小，就會造成記憶體上的浪費；而資料數 ＞ 陣列大小時，則會使得記憶體的空間不夠。</p>
+<br>
+<p>為了能讓資料妥善配置在記憶體中，「鏈結串列(Linked List)」便發明了！Linked List是串列的一種，由許多節點所組成，也是一種常見的資料結構，它最大特色就是可以動態配置記憶體，能在不使用連續的記憶體空間，存著一筆連續的資料，不過在實作上就比陣列還要麻煩了。</p>
+<br><br><br>
+<r><li>特性</li></r>
+<br><br>
+<h>
+<ul type="square">
+<li>動態配置記憶體</li>
+<br>
+<li>修改指標容易，彈性插入或移除節點在串列首、尾、中間</li>
+<br>
+<li>利用Linked List可更進一步實作出其他資料結構<br><br>
+Ex. 堆疊(Stack)、佇列(Queue)</li>
+</ul>
+</h>
+<br><br><br><br>
+<r><li>比較</li></r>
+<br><br>
+<table class="t" style="border:5px #cccccc solid;" rules="all" cellpadding='5'; width="700" height="450">
+	<tr align="center">
+		<td></td>
+		<th class="red" height=40>Array 儲存方式</th>
+		<th class="red" height=40>Linked List 儲存方式</th>
+	</tr>
+	<tr align="center">
+		<th width="130">實作</th>
+		<td>較簡單，只要宣告即可，但需要事先宣告陣列大小，造成記憶上的浪費。</td>
+		<td>每個節點除記錄資料外，還需要用額外的指標指向下一個節點，不需事先指定串列大小。</td>
+	</tr>
+	<tr align="center">
+		<th width="130">各筆資料型態</th>
+		<td>需全部相同</td>
+		<td>可不用全部相同</td>
+	</tr>
+	<tr align="center">
+		<th width="130">資料的加入與刪除</th>
+		<td>需做大量的資料搬移</td>
+		<td>可動態增加、刪除空間，修改指標即可。</td>
+	</tr>
+	<tr align="center">
+		<th width="130">記憶空間</th>
+		<td>占用連續的記憶體空間</td>
+		<td>可以非連續，但需額外記憶體空間紀錄節點指標。</td>
+	</tr>
+	<tr align="center">
+		<th width="130">資料的存取</th>
+		<td>可以循序或隨機存取</td>
+		<td>隨機存取功能弱，可以循序存取，但又需要先讀取指標，所以存取速度慢。</td>
+	</tr>
+	<tr align="center">
+		<th width="130">資料的搜尋速度</th>
+		<td>快，陣列可應用至二分搜尋(Binary Search)。</td>
+		<td>慢，需走訪(Traversal)各個節點。</td>
+	</tr>
+	<tr align="center">
+		<th width="130">可靠度</th>
+		<td>高</td>
+		<td>低，因為當指標斷裂，資料即遺失。</td>
+	</tr>
+</table>
+</ol>
+<br><br><br>
+</body>
+</html>

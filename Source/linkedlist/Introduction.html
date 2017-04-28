@@ -1,0 +1,74 @@
+﻿<html>
+<head>
+<title>Introduction</title>
+<style>
+body {
+background-image: url(inbg.png);
+background-size: 100%;
+}
+r{
+font-size:30px;
+font-family:微軟正黑體;
+color:blue;
+}
+</style>
+<script>
+var inputname=localStorage.getItem("name");
+document.getElementById('name1').innerHTML=inputname;
+
+for (var i = 0; i < images.length; i++) {
+var image = images[i],
+width = String(image.currentStyle.width);
+
+if (width.indexOf('%') == -1) {
+continue;
+}
+
+image.origWidth = image.offsetWidth;
+image.origHeight = image.offsetHeight;
+
+imgCache.push(image);
+c.ieAlpha(image);
+image.style.width = width;
+}
+
+</script>
+
+</head>
+<body background = "inbg.png" style="BACKGROUND-REPEAT: no-repeat">
+<br><br>
+
+<table>
+<tr>
+	<td><marquee scrollamount="40" height="110" direction="down" behavior="slide"><img src="l.png" height="100px"></marquee></td>
+	<td><marquee scrollamount="40" height="110" direction="down" behavior="slide"><img src="i.png" height="75px"></marquee></td>
+	<td><marquee scrollamount="40" height="110" direction="down" behavior="slide"><img src="n.png" height="100px"></marquee></td>
+	<td><marquee scrollamount="40" height="110" direction="down" behavior="slide"><img src="k.png" height="75px"></marquee></td>
+	<td><marquee scrollamount="40" height="110" direction="down" behavior="slide"><img src="e.png" height="100px"></marquee></td>
+	<td><marquee scrollamount="40" height="110" direction="down" behavior="slide"><img src="d.png" height="75px"></marquee></td>
+	<td></td>
+	<td></td>
+</tr>
+</table>
+<br>
+<table>
+<tr>
+	<td width=800></td>
+	<td><marquee scrollamount="40" width="550" height="100" direction="left" behavior="slide" align="middle"><img src="l2.png"><img src="i2.png"><img src="s.png"><img src="t.png"></marquee></td>
+</tr>
+</table>
+<p><r>Hello,　<span id=name></span></r>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<img src="inle.png" width="120" height="100"></p>
+
+<a onmouseover="document.a.src='weldog.png'" onmouseout="document.a.src='dog.png'">
+<img name=a border="0" src="dog.png" width="830px" height="450px">
+</a>
+
+
+
+<script>
+var inputname=localStorage.getItem("name");
+document.getElementById('name').innerHTML=inputname;
+</script>
+
+</body>
+</html>

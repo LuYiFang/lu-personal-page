@@ -1,0 +1,287 @@
+﻿<html>
+<head>
+<style type="text/css">
+p1{
+	font-family: 微軟正黑體;
+	font-weight: medium;
+	font-size:22px;
+}
+p2{
+	font-family: 微軟正黑體;
+	font-weight: medium;
+	font-size:26px;
+}
+</style>
+</head>
+<body background=Dllback.png>
+<table><tr>
+<td width="120"></td><td><img src="dlltop.png">&emsp;<img src="double.png"/></td>
+</tr></table>
+<br><br>
+<form name="f">
+<table>
+<td><p2><u>請輸入0~100整數資料</u></p2><br><br><br>
+<p1>輸入資料：</p1><input type="text" name='num' size="3" style="font-size:20px; font-family:微軟正黑體;">&emsp;
+<input type="button" id="addth" style="background-image:url(ath.png);width:120px;height:30px;border:1px #AA7700 solid;"  onclick="AddToHead();">
+<br><br>
+<p1>輸入資料：</p1><input type="text" name='num1' size="3" style="font-size:20px; font-family:微軟正黑體;">&emsp;
+<input type="button" id="addtt" style="background-image:url(att.png);width:120px;height:30px;border:1px #AA7700 solid;" onclick="AddToTail();">
+<br><br>
+<p1>輸入資料：</p1><input type="text" name='num2' size="3" style="font-size:20px; font-family:微軟正黑體;"><p1>，插入至第</p1><input type="text" id="insertNode" size="3" style="font-size:20px; font-family:微軟正黑體;"><p1>個node</p1>&emsp;
+<input type="button" id="Is" style="background-image:url(insert.png);width:95px;height:35px;border:1px #AA7700 solid;" onclick="Insert();"><br>
+<br>
+<p align=center>
+<input type="button" id="delfh" style="background-image:url(dfh.png);width:140px;height:30px;border:1px #AA7700 solid;" onclick="DeleteFromHead();">&emsp;
+<input type="button" id="delft" style="background-image:url(dft.png);width:140px;height:30px;border:1px #AA7700 solid;" onclick="DeleteFromTail();">
+</p>
+<p1>刪除資料：</p1><input type="text" name="num3" size="3" style="font-size:20px; font-family:微軟正黑體;">&emsp;
+<input type="button" id="deleteDNde" style="background-image:url(delete.png);width:95px;height:35px;border:1px #AA7700 solid;" onclick="Delete();">&emsp;&emsp;
+<input type="button" id="ca" style="background-image:url(ca.png);width:105px;height:30px;border:1px #AA7700 solid;" onclick="clearAll();">
+</td>
+<td>&emsp;<textarea readonly="readonly" name="ta" cols="25" rows="8" style="border:2px orange dashed;font-family:cursive;font-size:20px;"></textarea></td></tr></table>
+<table>
+<tr><td width="650"><p id="output"></p>
+<p id="imag"></p></td></tr>
+</form>
+</table>
+<p align=center><a href="learning.html" target="main"><img src="back0.png" width=90px height=35px></a></p>
+<script>
+
+	var output =document.getElementById("output");
+	var im = new Array("<img src ='.0.png'>","<img src ='.1.png'>","<img src ='.2.png'>","<img src ='.3.png'>","<img src ='.4.png'>",
+	"<img src ='.5.png'>","<img src ='.6.png'>","<img src ='.7.png'>","<img src ='.8.png'>","<img src ='.9.png'>","<img src ='.10.png'>",
+	"<img src ='.11.png'>","<img src ='.12.png'>","<img src ='.13.png'>","<img src ='.14.png'>","<img src ='.15.png'>","<img src ='.16.png'>",
+	"<img src ='.17.png'>","<img src ='.18.png'>","<img src ='.19.png'>","<img src ='.20.png'>","<img src ='.21.png'>","<img src ='.22.png'>",
+	"<img src ='.23.png'>","<img src ='.24.png'>","<img src ='.25.png'>","<img src ='.26.png'>","<img src ='.27.png'>","<img src ='.28.png'>",
+	"<img src ='.29.png'>","<img src ='.30.png'>","<img src ='.31.png'>","<img src ='.32.png'>","<img src ='.33.png'>",
+	"<img src ='.34.png'>","<img src ='.35.png'>","<img src ='.36.png'>","<img src ='.37.png'>","<img src ='.38.png'>",
+	"<img src ='.39.png'>","<img src ='.40.png'>","<img src ='.41.png'>","<img src ='.42.png'>","<img src ='.43.png'>"
+	,"<img src ='.44.png'>","<img src ='.45.png'>","<img src ='.46.png'>","<img src ='.47.png'>","<img src ='.48.png'>"
+	,"<img src ='.49.png'>","<img src ='.50.png'>","<img src ='.51.png'>","<img src ='.52.png'>","<img src ='.53.png'>"
+	,"<img src ='.54.png'>","<img src ='.55.png'>","<img src ='.56.png'>","<img src ='.57.png'>","<img src ='.58.png'>"
+	,"<img src ='.59.png'>","<img src ='.60.png'>","<img src ='.61.png'>","<img src ='.62.png'>","<img src ='.63.png'>"
+	,"<img src ='.64.png'>","<img src ='.65.png'>","<img src ='.66.png'>","<img src ='.67.png'>","<img src ='.68.png'>"
+	,"<img src ='.69.png'>","<img src ='.70.png'>","<img src ='.71.png'>","<img src ='.72.png'>","<img src ='.73.png'>"
+	,"<img src ='.74.png'>","<img src ='.75.png'>","<img src ='.76.png'>","<img src ='.77.png'>","<img src ='.78.png'>"
+	,"<img src ='.79.png'>","<img src ='.80.png'>","<img src ='.81.png'>","<img src ='.82.png'>","<img src ='.83.png'>"
+	,"<img src ='.84.png'>","<img src ='.85.png'>","<img src ='.86.png'>","<img src ='.87.png'>","<img src ='.88.png'>"
+	,"<img src ='.89.png'>","<img src ='.90.png'>","<img src ='.91.png'>","<img src ='.92.png'>","<img src ='.93.png'>"
+	,"<img src ='.94.png'>","<img src ='.95.png'>","<img src ='.96.png'>","<img src ='.97.png'>","<img src ='.98.png'>","<img src ='.99.png'>","<img src ='.100.png'>");
+	var size = 0;
+	var nu = "<img src = 'nulll.png'>";
+	var node = function(){
+		this.data = null;this.next = null;this.prev = null;
+	};
+	
+	var SLL = function(){
+		this.head = null;
+		this.tail = null;
+	};
+
+	function AddToHead(){
+		var num = eval(document.f.num.value);
+		var n = new node();
+		if(num == null){
+			alert("請輸入資料");
+		}else{
+			n.data = num;
+			size++;
+			output.innerHTML += "<br>"+num +  "add to head";
+			if(this.head == null){
+				this.head = this.tail = n;
+				f.ta.value="<Add To Head>  Linked List 為空 , head = tail = node"+num;
+			}else{
+				n.next = this.head;
+				this.head.prev = n;
+				this.head = n;
+				f.ta.value="<Add To Head>  node"+num+"指向head , head的prev指向node"+num+" , head指向node"+num;
+			}
+			f.num.value = "";
+			printAll();
+		}
+	}
+	
+	function AddToTail(){
+		var num1 = eval(document.f.num1.value);
+		var n = new node();
+		if(num1 == null){
+			alert("請輸入資料");
+		}else{
+			n.data = num1;
+			size++;
+			output.innerHTML += "<br>"+num1 +"add to tail";
+			if(this.head == null){
+				this.head = this.tail = n;
+				f.ta.value="<Add To Tail>  Linked List 為空 , head = tail = node"+num1;
+			}else{
+				this.tail.next = n;
+				n.prev = this.tail;
+				this.tail = n;
+				f.ta.value="<Add To Tail>  tail的next指向node"+num1+" , node"+num1+"的prev指向tail , tail指向node"+num1;
+			}
+			f.num1.value = "";
+			printAll();
+		}
+	}
+	
+	function Insert(){
+		var num2 = eval(document.f.num2.value);
+		var insertNode = eval(document.f.insertNode.value);
+		if(num2 == null || insertNode == null){
+			alert("請輸入資料");
+		}else{
+			if(insertNode > size+1 || insertNode <= 0){
+				alert("索引不存在");
+			}else{
+				var n = new node();
+				n.data = num2;
+				size++;
+				if(this.head == null){//if is empty
+					this.head = this.tail = n;
+					f.ta.value="<Insert>  Linked List 為空,head = tail = node"+num2;
+				}else if(insertNode == size){//if is one greater then size
+					this.tail.next = n;
+					n.prev = this.tail;
+					this.tail = n;
+					f.ta.value="<Insert>  tail的next指向node"+num2+" , node"+num2+"的prev指向tail , tail指向node"+num2;
+				}else{
+					var tmp = this.head;
+					var i = 1;
+					while(tmp.next != null && i != insertNode){
+						tmp = tmp.next;
+						i++;
+					}
+					if(tmp == this.head){
+						n.next = this.head;
+						head.prev = n;
+						this.head = n;
+						f.ta.value="<Insert>  node"+num2+"的next指向head , head的prev指向node"+num2+" , head指向node"+num2;
+					}else{
+						n.prev = tmp.prev;
+						tmp.prev.next = n;
+						tmp.prev = n;
+						n.next = tmp;
+						f.ta.value="<Insert>  node"+num2+"的prev指向第"+insertNode+"個node(圖node"+num2+"的next) , 此node的prev的next指向node"+num2+"且此node的prev指向node"+num2+" , node"+num2+"指向此node";
+					}	
+				}
+			}
+		}
+		f.num2.value = "";
+		f.insertNode.value = "";
+		printAll();
+	}
+	
+	function DeleteFromHead(){
+		if(this.head == null){
+			alert("資料不存在");
+		}else if(this.head == this.tail){//if only one node
+			this.head = this.tail = null;
+			output.innerHTML +="<br>"+ "deletefromhead";
+			size--;
+			f.ta.value="<Delete From Head>  head = tail = null";
+			printAll();
+		}else{
+			this.head = this.head.next;
+			this.head.prev = null;
+			output.innerHTML +="<br>"+ "deletefromhead";
+			size--;
+			f.ta.value="<Delete From Head>  head指向head的next , head的prev = null";
+			printAll();
+		}
+	}
+	
+	function DeleteFromTail(){
+		if(this.head == null){//if is empty
+			alert("資料不存在");
+		}else if(this.head == this.tail){//if only one node
+			this.head=this.tail=null;
+			size--;
+			printAll();
+			f.ta.value="<Delete From Tail>  head = tail = null";
+			output.innerHTML += "<br>"+"deletefromtail";
+		}else{
+			this.tail = this.tail.prev;
+			this.tail.next = null;
+			output.innerHTML += "<br>"+"deletefromtail";
+			size--;
+			f.ta.value="<Delete From Tail>  tail指向tail的prev , tail的next = null";
+			printAll();
+		}
+	}
+	
+	function Delete(){
+		var num3 = (document.f.num3.value);
+		if(num3 == null){
+			alert("請輸入資料");
+		}else {
+			if(this.head == null){//if empty
+				alert("資料不存在");
+			}else{
+				if(this.head == this.tail && num3 == this.head.data){//if only one node
+					this.head = this.tail = null;
+					output.innerHTML += "<br>"+"delete " +num3;
+					size--;
+					f.ta.value="<Delete>  head = tail = null";
+				}else if(this.head.data == num3){//if is head
+					this.head = this.head.next;
+					this.head.prev = null;
+					output.innerHTML +="<br>"+ "deletefromhead";
+					f.ta.value="<Delete>  head指向head的next , head的prev = null";
+					size--;
+				}else {
+					for(var tmp = this.head;tmp != null && tmp.data != num3;tmp = tmp.next);
+					if(tmp == this.tail){// if is tail
+						this.tail = this.tail.prev;
+						this.tail.next = null;
+						output.innerHTML += "<br>"+"deletefromtail";
+						size--;
+						f.ta.value="<Delete>  tail指向tail的prev , tail的next = null";
+					}else if(tmp == null){// if not exist
+						alert("資料不存在");
+					}else{
+						tmp.prev.next = tmp.next;
+						tmp.next.prev = tmp.prev;
+						size--;
+						f.ta.value="<Delete>  node"+num3+"的prev的next指向node"+num3+"的next , node"+num3+"的next的prev指向node"+num3+"的prev";
+					}
+					output.innerHTML += "<br>"+"delete " +num3;
+				}
+				f.num3.value = "";
+				printAll();
+			}
+		}
+	}
+	
+	
+	
+	function printAll(){
+		output.innerHTML ="";
+		imag.innerHTML = "";
+		if(size == 0){
+			output.innerHTML = "<br><p1>size: "+this.size+"<br></p1>";
+		}else{
+			var i = 0;
+			tmp = this.head;
+			output.innerHTML = "<br><p1>size: "+this.size+"<br></p1>";
+			imag.innerHTML += "<img src='head.png'>" + "<img src='dsarrow.png'>";
+			while(i < size-1){
+				imag.innerHTML += im[tmp.data] + "<img src='darrow.png'>";
+				i++;
+				tmp = tmp.next;
+			}
+			imag.innerHTML += im[tail.data] +"<img src='dsarrow.png'>" +nu;
+		}
+	}
+	
+	function clearAll(){
+		size = 0;
+		this.head = this.tail = null;
+		output.innerHTML ="";
+		imag.innerHTML = "";
+		f.ta.value = "";
+	}
+		
+	
+</script>
+</body>
+</html>

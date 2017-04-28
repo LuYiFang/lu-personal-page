@@ -1,0 +1,28 @@
+﻿<html>
+<head>
+<title>LinkedList</title>
+</head>
+<body background="loginbg.png" style="BACKGROUND-REPEAT: no-repeat">
+
+<br><br><br><br><br>
+<center>
+<img src = "title.png"><br><br><br>
+<font size=4>輸入暱稱：</font>
+<span><input type= text id="InputName" value=""></span>
+<input type= button id="bt1" value="Submit" onclick='StoreUserName();'><br><br><br>
+<font size=4 color=red>＊　請記得先輸入暱稱，按下Submit後，再進入網頁喔 :)</font><br><br><br>
+<p id="enter">
+<a href='Enter_Frameset.html'><img src="Enter.png"></a>
+</p>
+</body>
+<script>
+document.getElementById("enter").style.visibility='hidden';
+function StoreUserName() {
+	var input=document.getElementById('InputName').value;
+	localStorage.setItem("name",input);
+    document.all.InputName.focus();
+	document.getElementById("enter").style.visibility='visible';
+}
+
+</script>
+</html>
