@@ -1,0 +1,300 @@
+﻿<html>
+<head>
+<title>Linked List Classification</title>
+<style>
+h{
+font-size:18px;
+font-family:微軟正黑體;
+line-height:30px;
+}
+r{
+font-size:24px;
+font-family:微軟正黑體;
+color:#FF3B3B;
+}
+.t th{
+font-size:16px;
+font-family:微軟正黑體;
+}
+.t td{
+font-size:16px;
+font-family:微軟正黑體;
+}
+</style>
+</head>
+<body>
+<a name="p"></a>
+<table width=100%>
+<tr>
+	<td><a href="#p1" onmouseover="document.a.src='topsll0.png'" onmouseout="document.a.src='topsll.png'">
+		<img name=a border="0" src="topsll.png" width=225 height=290 title="Single Linked List">
+		</a>
+	</td>
+	<td><a href="#p2" onmouseover="document.b.src='topdll0.png'" onmouseout="document.b.src='topdll.png'">
+		<img name=b border="0" src="topdll.png" width=225 height=290 title="Double Linked List">
+		</a>
+	</td>
+	<td><a href="#p3" onmouseover="document.c.src='topcll0.png'" onmouseout="document.c.src='topcll.png'">
+		<img name=c border="0" src="topcll.png" width=225 height=290 title="Circular Linked List">
+		</a>
+	</td>
+	<td><a href="#p4" onmouseover="document.d.src='topcmp0.png'" onmouseout="document.d.src='topcmp.png'">
+		<img name=d border="0" src="topcmp.png" width=225 height=290 title="SLL, DLL, CLL 比較">
+		</a>
+	</td>
+</tr>
+</table>
+<br><br><br><br><br>
+<a name="p1"><img src="slltitle.png"></a>
+<hr>
+<br>
+<ul type="disc">
+<r><li>結構</li></r>
+<br><br>
+<h>
+節點(node) = 資料值 + 鍵結指標(指向下一個指標的位址)<br><br>
+<img src="sllnode.png">
+<br><br>
+Ex.<br>
+<img src="sllnode2.png">
+</h>
+<br><br><br>
+<r><li>操作</li></r>
+<br><br>
+<h>
+<ol start="1">
+<li>插入新節點(Insert)</li>
+<br>
+<b>指標轉移：</b>想要增加Y節點至X與Z節點之中，我們可以先將Y節點的鍵結指標指向Z，再將X節點的鍵結指標指向Y。
+<br><br>
+<img src="sllinsert.png">
+<br><br>
+<table style="font-size:18px;border:2px #FFAC55 dashed;padding:5px;" rules="all" cellpadding='5';>
+	<tr>
+		<td>語法：<br>
+		① newNode.next = node.next;
+		<br>
+		② node.next = newNode;</td>
+	</tr>
+</table>
+<br><br>
+<li>移除節點(Delete)</li>
+<br>
+<b>指標轉移：</b>想要刪除X與Z之間的Y節點，就將X節點的鍵結指標指向Z即可。
+<br><br>
+<img src="slldelete.png">
+<br><br>
+<table style="font-size:18px;border:2px #FFAC55 dashed;padding:5px;" rules="all" cellpadding='5';>
+	<tr>
+		<td>語法：<br>
+		node.next = node.next.next;</td>
+	</tr>
+</table>
+<br><br>
+由上圖可知，我們是利用<font color=red><u>改變串列的指標</u></font>來做到<font color=blue>「邏輯性移除(Logically Remove)」</font>的動作。
+<br><br>
+而要做到<font color=blue>「實際移除(Physically Delete)」</font>節點，讓此節點從記憶體中刪除，在Java語言中會自動被gc(garbage collection)回收，而C語言則需要使用free();
+<br><br>
+而Single Linked List無法直接取得上一個節點，必須<u>從頭開始找</u>。
+<br>
+</ol>
+</h>
+<br><br>
+<r><li>舉例：用Java指令實作</li></r>
+<br><br>
+<table class=t align=center style="font-size:18px;border:3px #FFAC55 double;padding:5px;" rules="all" cellpadding='5'; width=100%>
+	<tr>
+		<td colspan="3">public class sllNode {<br>	　public int data;<br>　public sllNode next;<br>　public sllNode(int i,sllNode n) {<br>　　data = i;<br>　　next = n;<br>　}<br>}</td>
+	</tr>
+	<tr>
+		<th align=center width="300">說明</th>
+		<th align=center>示意圖</th>
+		<th align=center>語法</th>
+	</tr>
+	<tr>
+		<th align=center width="300">建立一個新node，資料值為10，<br>讓p1指向它</th>
+		<td><img src=slljava1.png></td>
+		<td>sllNode p1 = new sllNode(10,null);</td>
+	</tr>	
+	<tr>
+		<th align=center width="300">再建立另一個新node，資料值30，<br>由10這個node指向它</th>
+		<td><img src=slljava2.png></td>
+		<td>p1.next = new sllNode(30,null);</td>
+	</tr>
+	<tr>
+		<th align=center width="300">建立一個資料值20的node，<br>插入10和30這兩個node中間</th>
+		<td><img src=slljava3.png width=300></td>
+		<td>p1.next = new sllNode(20,p1.next);</td>
+	</tr>
+	<tr>
+		<th align=center width="300">將中間資料為20的這個node刪除</th>
+		<td><img src=slljava4.png width=300></td>
+		<td>p1.next = p1.next.next;</td>
+	</tr>
+	<tr>
+		<th align=center width="300">讓30這個node指回10這個node</th>
+		<td><img src=slljava5.png width=300></td>
+		<td>p1.next.next = p1;</td>
+	</tr>
+</table>
+<br>
+</ul>
+<a href="#p"><img src="top.png" align="right" width=110 height=60></a>
+
+<br><br><br><br><br><br>
+<a name="p2"><img src="dlltitle.png"></a>
+<hr>
+<br>
+<ul type="disc">
+<r><li>結構</li></r>
+<br><br>
+<h>
+比Single Linked List<u>多了一個鍵結指標</u>，指向前一個節點。<br><br>
+<img src="dllnode.png">
+<br><br>
+通常會在Double Linked List加上一個串列首(head)，此串列首的資料欄不放資料。
+<br><br>
+Ex.<br><br>
+<img src="dllnode2.png">
+<br><br>
+</h>
+<r><li>操作</li></r>
+<br><br>
+<h>
+<ol start="1">
+<li>插入新節點(Insert)</li>
+<br>
+<b>指標轉移：</b>想要增加Y節點至X與Z節點之中，我們可以先將Y節點的右邊和左邊鍵結指標分別指向Z和X節點，再將Z節點的左邊鍵結指標指向Y，X節點的右邊鍵結指標指向Y。
+<br><br>
+<img src="dllinsert.png">
+<br><br>
+<table style="font-size:18px;border:2px #FFAC55 dashed;padding:5px;" rules="all" cellpadding='5';>
+	<tr>
+		<td>語法：<br>
+		① n1.next = p1.next;
+		<br>
+		② n1.prev = p1;
+		<br>
+		③ p1.next.prev = n1;
+		<br>
+		④ p1.next = n1;</td>
+	</tr>
+</table>
+<br><br>
+<li>移除節點(Delete)</li>
+<br>
+<b>指標轉移：</b>想要刪除X與Z之間的Y節點，先將X節點的右邊鍵結指標指向Z節點，再將Z節點的左邊鍵結指標指向X節點，即完成刪除動作。
+<br><br>
+<img src="dlldelete.png">
+<br><br>
+<table style="font-size:18px;border:2px #FFAC55 dashed;padding:5px;" rules="all" cellpadding='5';>
+	<tr>
+		<td>語法：<br>
+		① p1.next = p1.next.next;
+		<br>
+		② p1.next.next.prev = p1;</td>
+	</tr>
+</table>
+</ol>
+</h>
+<br><br>
+<r><li>舉例：用Java指令實作</li></r>
+<br><br>
+<table class=t align=center style="border:3px #FFAC55 double;padding:5px;" rules="all" cellpadding='5'; width=100%>
+	<tr>
+		<td colspan="3">public class dllNode {<br>	　public int data;<br>　public dllNode next, prev;<br>　public dllNode(dllNode p,int i,dllnode n) {<br>　　prev = p;<br>　　data = i;<br>　　next = n;<br>　}<br>}</td>
+	</tr>
+	<tr>
+		<th align=center width="300">說明</th>
+		<th align=center>示意圖</th>
+		<th align=center>語法</th>
+	</tr>
+	<tr>
+		<th align=center width="300">建立一個新node，資料值為10，<br>讓p2指向它</th>
+		<td><img src=dlljava1.png></td>
+		<td>dllNode p2 = new dllNode(null,10,null);</td>
+	</tr>	
+	<tr>
+		<th align=center width="300">再建立另一個新node，資料值30，<br>由10這個node指向它</th>
+		<td><img src=dlljava2.png></td>
+		<td>p2.next = new dllNode(p2,30,null);</td>
+	</tr>
+	<tr>
+		<th align=center width="300">建立一個資料值20的node，<br>插入10和30這兩個node中間</th>
+		<td><img src=dlljava3.png width=300></td>
+		<td>p2.next = new dllNode(p2,20,p2.next);<br>p2.next.next.prev = p2.next;</td>
+	</tr>
+	<tr>
+		<th align=center width="300">將中間資料為20的這個node刪除</th>
+		<td><img src=dlljava4.png width=300></td>
+		<td>p2.next = p2.next.next;<br>p2.next.prev = p2;</td>
+	</tr>
+	<tr>
+		<th align=center width="300">將30這個node的資料改成50</th>
+		<td><img src=dlljava5.png width=300></td>
+		<td>p2.next.data = 50;</td>
+	</tr>
+</table>
+</ul>
+<br>
+<a href="#p"><img src="top.png" align="right" width=110 height=60></a>
+
+<br><br><br><br><br><br>
+<a name="p3"><img src="clltitle.png"></a>
+<hr>
+<br>
+<ul type="disc">
+<r><li>結構</li></r>
+<br><br>
+<h>
+將Single Linked List的最後一個節點指標指回第一個指標。
+<br>
+<img src="cllnode.png">
+<br><br>
+Double Linked List亦可成為Circular Double Linked List。
+<br>
+<img src="cdllnode.png">
+</h>
+<br><br>
+<r><li>特質</li></r>
+<br><br>
+<h>
+<ol start="1">
+<li>沒有明顯的頭尾節點：每個node皆會被拜訪(經過)。</li>
+<br>
+<li>回收整個串列時間為O(1)：和Linked List的長度無關。</li>
+</ol>
+</h>
+</ul>
+<a href="#p"><img src="top.png" align="right" width=110 height=60></a>
+
+<br><br><br><br><br><br>
+<a name="p4"><img src="compare.png"></a>
+<hr>
+<br><br>
+<table class=t style="border:5px #cccccc solid;" rules="all" cellpadding='5'; align="center" width=100% height="150">
+	<tr align="center">
+		<td></td>
+		<th><font color=#1E96F0>Single Linked List</font></th>
+		<th><font color=#1E96F0>Double Linked List</font></th>
+		<th><font color=#1E96F0>Circular Linked List</font></th>
+	</tr>
+	<tr align="center">
+		<th width="80">安全性</th>
+		<td>低，因為如果某一個指標遺失或錯誤，資料就不見了。</td>
+		<td>最高，且往前或往後的走訪也最快。</td>
+		<td>普通</td>
+	</tr>
+	<tr align="center">
+		<th width="80">運作機制</th>
+		<td>普通</td>
+		<td>最複雜，需要存很多個鍵結指標，花費空間大。</td>
+		<td>較簡單</td>
+	</tr>
+</table>
+<br>
+<a href="#p"><img src="top.png" align="right" width=110 height=60></a>
+
+<br><br><br><br><br>
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿<html>
+<head>
+<title>Content</title>
+
+</head>
+<body background="contentbg.png">
+
+<img src="Content.png" width=250 height=80><br><br><br><br><br><br>
+<p align=center>
+<a href='Introduction_Linked List.html' target=main  style='text-decoration:none;' onmouseover="document.a.src='Content_11.png'" onmouseout="document.a.src='Content_1.png'">
+<img name=a border="0" src="Content_1.png" width=230 height=90 title="何謂Linked List？">
+</a>
+<br>
+<a href='Classification.html' target=main style='text-decoration:none;' onmouseover="document.b.src='Content_21.png'" onmouseout="document.b.src='Content_2.png'">
+<img name=b border="0" src="Content_2.png" width=230 height=90 title="Linked List分類">
+</a>
+<br>
+<a href='Learning.html' target=main style='text-decoration:none;' onmouseover="document.c.src='Content_31.png'" onmouseout="document.c.src='Content_3.png'">
+<img name=c border="0" src="Content_3.png" width=230 height=90 title="更多學習 ... ...">
+</a>
+<br>
+<a href='selfintroduction.html' target=main style='text-decoration:none;' onmouseover="document.d.src='Content_41.png'" onmouseout="document.d.src='Content_4.png'">
+<img name=d border="0" src="Content_4.png" width=230 height=90 title="About us ...">
+</a>
+</p>
+
+<br><br><br>
+
+<p align=center><INPUT type="text" size=5 id="time_spent" readonly/>
+<br>
+<a onmouseover="document.g.src='dia.png'" onmouseout="document.g.src='egg.png'">
+<img name=g border="0" src="egg.png" width="150px" height="135px">
+</a>
+</p>
+
+
+
+<script>
+	var time_start = new Date();
+		var clock_start = time_start.getTime();
+		
+		var timerId = setInterval('show_secs()',1000);
+		//var timerId =setTimeout('show_secs()',1000);
+		function get_time_spent (){ 
+			var time_now = new Date();
+			return((time_now.getTime() - clock_start)/1000); 
+		}
+		// show the time user spent on the side
+		function show_secs (){ 
+			var i_total_secs = Math.round(get_time_spent()); 
+			var i_secs_spent = i_total_secs % 60;
+			var i_mins_spent = Math.round((i_total_secs-30)/60); 
+			var s_secs_spent = "" + ((i_secs_spent>9) ? i_secs_spent : "0" + i_secs_spent);
+			var s_mins_spent = "" + ((i_mins_spent>9) ? i_mins_spent : "0" + i_mins_spent);
+			document.getElementById("time_spent").value = s_mins_spent + ":" + s_secs_spent;
+		        //var timerId =setTimeout('show_secs()',1000);
+                        }
+</script>
+</body>
+</html>
