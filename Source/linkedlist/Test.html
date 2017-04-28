@@ -1,0 +1,202 @@
+﻿<html>
+<head>
+<title>Online Test</title>
+<style>
+h{
+font-size:18px;
+font-family:微軟正黑體;
+}
+s{
+font-size:30px;
+font-family:微軟正黑體;
+color:red
+}
+y{
+font-size:30px;
+font-family:微軟正黑體;
+}
+r{
+font-size:26px;
+font-family:微軟正黑體;
+color:blue;
+}
+w{
+font-size:26px;
+font-family:微軟正黑體;
+color:blue;
+}
+</style>
+</head>
+<body>
+<br><img src="toptest.png"><br><br>
+<table style="border:5px #DBABFF solid;padding:5px;" rules="all" cellpadding='5'; align=center width=100% height=600>
+	<tr>
+		<td width=50%>
+			<span id="no"><img src="qq.png"></span><span id="no1"><y><font color =#FF44AA>&ensp;1&ensp;</y></font></span><span id = "no2"><img src="qq0.png"></span>
+			<p id="prob1"><img src=q1.png></p><br><br>
+			<input type="radio" name="p1" value="1" onclick="userreply=1;" selected=""><span id="item1"><img src=q11.png></span>&nbsp;<br>
+			<input type="radio" name="p1" value="2" onclick="userreply=2;"><span id="item2"><img src=q12.png></span>&nbsp;<br>
+			<input type="radio" name="p1" value="3" onclick="userreply=3;"><span id="item3"><img src=q13.png></span>&nbsp;<br>
+			<input type="radio" name="p1" value="4" onclick="userreply=4;"><span id="item4"><img src=q14.png></span>&nbsp;<br>
+			
+			<p align=center><button id="Check" onclick="checkans();" style="background-image:url(chbt.jpg);width:143px;height:35px;border:0px #FFFFFF solid;"></button></p>
+		</td>
+		<td width=50% valign="top">
+			<img src="qname.png"><r><span id="name1"></span></r>&emsp;&emsp;&emsp;&emsp;&emsp;<img src="qscore.png"><span id = pnsc></span>
+			<hr style="border: 1px dashed #cccccc; width: 100%; height: 0px;" />
+			<br>
+			<p id="report"></p>
+			<p id="report1"></p>
+			<p align=center><button id="next" onclick="nextqest();" style="background-image:url(chnt.jpg);width:100px;height:40px;border:0px #FFFFFF solid;"></button></p>
+			<p id="feedback"></p>
+
+			<p id="p1"> <img src ="nomal.png" width=250px height=300px></p>
+		</td>
+</table>
+
+<p align=center><a href="Learning.html"><img src="back.png"></a></p>
+<br>
+
+
+
+<script>
+var inputname=localStorage.getItem("name");
+document.getElementById('name1').innerHTML=inputname;
+
+var itempool='';
+itempool="<img src=q1.png>,<img src=q11.png>,<img src=q12.png>,<img src=q13.png>,<img src=q14.png>,";
+itempool+="<img src=q2.png>,<img src=q21.png>,<img src=q22.png>,<img src=q23.png>,<img src=q24.png>,";
+itempool+="<img src=q3.png>,<img src=q31.png>,<img src=q32.png>,<img src=q33.png>,<img src=q34.png>,";
+itempool+="<h>下列關於Linked List的特性，何者錯誤？</h>,<h>動態配置記憶體</h>,<h>是節點串接而成的串列</h>,<h>加入、刪除資料容易</h>,<h>所存的各筆資料型態必須相同</h>,";
+itempool+="<h>關於陣列(Array)與鏈結串列(Linked List)，下列何者不正確？</h>,<h>陣列在宣告大小後，不能在執行當中任意改變其大小。</h>,<h>鏈結串列進行元素的插入或刪除時，速度比陣列慢。</h>,<h>陣列結構的搜尋速度比鏈結串列快。</h>,<h>陣列可以隨機存取元素。</h>,";
+itempool+="<img src=q6.png>,<img src=q61.png>,<img src=q62.png>,<img src=q63.png>,<img src=q64.png>,";
+itempool+="<h>下列何者不是Linked List的優點？</h>,<h>可靠度高</h>,<h>占用非連續記憶體空間</h>,<h>插入/刪除容易</h>,<h>不需事先指定串列大小</h>,";
+itempool+="<h>環狀鍵結串列最後一個節點的指標欄位值為</h>,<h>第一個節點</h>,<h>第二個節點</h>,<h>最後一節點</h>,<h>null,</h>";
+itempool+="<h>有關Double Linked List的節點結構，下列何者不正確？</h>,<h>每一個節點具有三個欄位</h>,<h>左右各有兩個指標欄位</h>,<h>節點結構的中間為資料欄位</h>,<h>每一個節點具有兩個欄位,</h>";
+itempool+="<h>下列何者需花費的記憶體空間最大？,<h>Single Linked List</h>,<h>Double Linked List</h>,<h>Array</h>,<h>以上皆非,</h>";
+itempool+="<img src=q011.png>,<img src=q0111.png>,<img src=q0112.png>,<img src=q0113.png>,<img src=q0114.png>,";
+itempool+="<h>刪除一個雙向鏈結串列的首節點時，需改變幾個指標？</h>,<h>3</h>,<h>5</h>,<h>2</h>,<h>4,</h>";
+itempool+="<h>用鏈結串列和陣列來儲存資料，下列何者錯誤？</h>,<h>陣列宣告簡單</h>,<h>陣列中的加入或刪除元素只需移動小量資料</h>,<h>鏈結串列需要額外的空間儲存指標</h>,<h>陣列可以隨機存取資料</h>,";
+itempool+="<h>Linked List在哪一項操作上效率不如Array？</h>,<h>在現有資料中加入資料</h>,<h>在現有資料中刪除資料</h>,<h>隨機讀取任一筆資料</h>,<h>以上效率皆不如陣列</h>,";
+itempool+="<img src=q015.png>,<img src=q0151.png>,<img src=q0152.png>,<img src=q0153.png>,<img src=q0154.png>,";
+itempool+="<h>有關Linked List，下列何者不正確？</h>,<h>比Array浪費記憶體空間</h>,<h>隨機存取功能弱</h>,<h>插入或刪除資料時需大量搬移資料</h>,<h>不必占用連續記憶體位置</h>,";
+itempool+="<h>下列何者不是動態配置記憶體的主要原因？</h>,<h>程式較簡單</h>,<h>記憶體不須事先宣告</h>,<h>串列分裂、合併容易</h>,<h>插入/刪除時間複雜度較低</h>,";
+itempool+="<img src=q018.png>,<img src=q0181.png>,<img src=q0182.png>,<img src=q0183.png>,<img src=q0184.png>,";
+itempool+="<img src=q019.png>,<img src=q0191.png>,<img src=q0192.png>,<img src=q0193.png>,<img src=q0194.png>,";
+itempool+="<img src=q020.png>,<img src=q0201.png>,<img src=q0202.png>,<img src=q0203.png>,<img src=q0204.png>,";
+var quest=new Array();
+var ans=new Array(1,3,2,4,2,1,1,1,4,2,1,3,2,3,4,3,1,2,4,2);//new can be omitted
+quest=itempool.split(",");
+total=quest.length/5;
+
+var picture=new Array("<img src=wwww.png width=250px height=300px>","<img src=www.png width=250px height=300px>","<img src=ww.png width=250px height=300px>","<img src=w.png width=250px height=300px>","<img src=wr.png width=250px height=300px>","<img src=wrrr.png width=250px height=300px>","<img src=r.png width=250px height=300px>","<img src=rr.png width=250px height=300px>","<img src=r1.png width=250px height=300px>","<img src=r2.png width=250px height=300px>","<img src=r3.png width=250px height=300px>","<img src=r4.png width=250px height=300px>"); 
+var p2=new Array("<img src=r1.png width=250px height=300px>","<img src=r2.png width=250px height=300px>","<img src=r3.png width=250px height=300px>","<img src=r4.png width=250px height=300px>");
+var psc=new Array("<img src=sc0.png>","<img src=sc5.png>","<img src=sc10.png>","<img src=sc15.png>","<img src=sc20.png>","<img src=sc25.png>","<img src=sc30.png>","<img src=sc35.png>","<img src=sc40.png>","<img src=sc45.png>","<img src=sc50.png>","<img src=sc55.png>","<img src=sc60.png>","<img src=sc65.png>","<img src=sc70.png>","<img src=sc75.png>","<img src=sc80.png>","<img src=sc85.png>","<img src=sc90.png>","<img src=sc95.png>","<img src=sc100.png width=100px height=60px>");
+var w=0; 
+var r=0;
+var pp2=0;
+var p=document.getElementById("p1");
+var realno=0;
+var userreply=0, sc=0;
+var feed="";
+var str ="";
+var imp="";
+
+var rand=new Array(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19);
+
+var tmp, temp;
+for (i = 0; i <= 19; i++) {
+	var x = Math.floor(Math.random()*20);
+	tmp = rand[i];
+	rand[i] = rand[x];
+	rand[x] = tmp;
+		
+	temp = ans[i];
+	ans[i] = ans[x];
+	ans[x] = temp;	
+}
+
+document.getElementById("next").style.visibility='hidden';
+function checkans()
+{
+
+if (userreply==ans[realno]) {
+	feed="<r><font color=red>YA~~~恭喜你答對囉！！！<br><br><br>　　　請按下一題　↓<br></font></r>";
+	document.getElementById("next").style.visibility='visible';
+	document.getElementById("Check").style.visibility='hidden';
+	if(w>0){
+		p.innerHTML=picture[4];
+	}
+	else if(r>=7){
+		p.innerHTML=p2[pp2%4];
+		pp2++;
+	}
+	else{
+		p.innerHTML=picture[r+5];
+		r++;
+	}
+	sc+=5;
+	w=0;
+	realno++;
+}	
+else {
+	imp=quest[eval(rand[realno]*5+ ans[realno])]
+	feed="<r><font color=red>答錯了>< <br><br>正確答案為：<br></font></r>"+imp+"<br><br><br><r><font color=red>　　　請按下一題　↓<br></font></r>";
+	document.getElementById("next").style.visibility='visible';
+	document.getElementById("Check").style.visibility='hidden';
+	if(w==0 || w<=3){
+		p.innerHTML=picture[3-w];
+	}else{
+		p.innerHTML=picture[0];
+	}
+	sc+=0;
+	w++;
+	r=0;
+	realno++;
+}
+
+
+
+if (realno <= 19) {	
+	document.getElementById('report').innerHTML=feed;
+}
+else {
+	sc=psc[sc/5];
+	document.getElementById("next").style.visibility='hidden';
+	document.getElementById('pnsc').innerHTML=sc;
+	document.getElementById('report1').innerHTML="<w><font color=red>考試結束！！<br><br>你的分數在右上方喔　:D</font></w>";
+}
+
+}
+
+function nextqest()
+{	
+	document.getElementById('report').innerHTML="<br><br><br><br><br><br><br>";
+	document.getElementById("next").style.visibility='hidden';
+	document.getElementById("Check").style.visibility='visible';
+	if (realno<total)
+	{
+		repeat=0;
+		document.getElementById('no1').innerHTML="<y><font color=#FF44AA>"+"&ensp;"+eval(realno+1)+"&ensp;"+"</font></y>";
+		var problem=document.getElementById('prob1');
+		problem.innerHTML=quest[eval(rand[realno]*5+0)];
+		var item1=document.getElementById('item1');
+		item1.innerHTML=quest[eval(rand[realno]*5+1)];
+		var item2=document.getElementById('item2');
+		item2.innerHTML=quest[eval(rand[realno]*5+2)];
+		var item3=document.getElementById('item3');
+		item3.innerHTML=quest[eval(rand[realno]*5+3)];
+		var item4=document.getElementById('item4');
+		item4.innerHTML=quest[eval(rand[realno]*5+4)];
+	}
+}
+
+window.onload=function (){
+nextqest();
+}
+
+
+
+</script>
+</body>
+</html>
